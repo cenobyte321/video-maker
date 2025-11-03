@@ -6,8 +6,8 @@ This repository contains miscellaneous scripts to generate videos.
 
 ### count_progress.py
 
-A script that generates a countdown progress video. The video displays:
-- A countdown number (1-4) in the center
+A script that generates a count-up timer progress video. The video displays:
+- A counting number (1-4) in the center
 - A progress bar on the left side that fills from bottom to top
 - The progress bar color transitions from green to red as it fills
 - Video resolution: 1080x1920 (portrait orientation)
