@@ -21,7 +21,7 @@ Before running the script, install the required dependencies using the requireme
 pip install -r requirements.txt
 ```
 
-**Note:** The script requires the Arial font file (`arial.ttf`) to be present in the same directory as the script.
+**Note:** The script uses the Arial font. PIL/Pillow's `ImageFont.truetype()` will automatically search system font directories (e.g., `/usr/share/fonts/` on Linux, `C:\Windows\Fonts\` on Windows) if the font file is not found in the current directory. As long as Arial is installed on your system, the script will work without needing the font file in the same directory.
 
 #### Usage
 
@@ -30,7 +30,7 @@ pip install -r requirements.txt
    ```bash
    pip install -r requirements.txt
    ```
-3. Make sure `arial.ttf` is available in the script directory
+3. Ensure Arial font is installed on your system (most systems have it by default)
 4. Run the script:
    ```bash
    python count_progress.py
