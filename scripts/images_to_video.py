@@ -38,6 +38,9 @@ def images_to_video(image_folder, output_file, fps=30, codec='mp4v'):
     for image in images:
         image_path = os.path.join(image_folder, image)
         frame = cv2.imread(image_path)
+        if frame is None:
+            print(f"Warning: Could not read image {image}, skipping...")
+            continue
         video.write(frame)
         print(f"Added frame: {image}")
     

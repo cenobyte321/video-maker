@@ -27,6 +27,11 @@ def extract_frames(input_file, output_folder, interval=1, format='jpg'):
     fps = int(cap.get(cv2.CAP_PROP_FPS))
     total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
     
+    if fps <= 0:
+        print("Error: Invalid FPS value. Video file may be corrupted.")
+        cap.release()
+        return
+    
     print(f"Video FPS: {fps}")
     print(f"Total frames: {total_frames}")
     print(f"Extracting every {interval} frame(s)...")

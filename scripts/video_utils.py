@@ -26,7 +26,8 @@ def get_video_info(video_file):
         has_audio = clip.audio is not None
         audio_fps = clip.audio.fps if has_audio else None
         clip.close()
-    except:
+    except (IOError, OSError) as e:
+        print(f"Warning: Could not read audio information: {e}")
         has_audio = False
         audio_fps = None
     
@@ -60,6 +61,11 @@ def resize_video(input_file, output_file, width=None, height=None, scale=None):
     orig_width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
     orig_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
     total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+    
+    if fps <= 0:
+        print("Error: Invalid FPS value. Video file may be corrupted.")
+        cap.release()
+        return
     
     # Calculate new dimensions
     if scale:

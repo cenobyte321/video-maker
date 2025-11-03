@@ -114,8 +114,14 @@ def main():
     
     args = parser.parse_args()
     
-    # Parse color
-    color = tuple(map(int, args.color.split(',')))
+    # Parse and validate color
+    try:
+        color_values = args.color.split(',')
+        if len(color_values) != 3:
+            parser.error("Color must have exactly 3 values in BGR format (e.g., 255,255,255)")
+        color = tuple(map(int, color_values))
+    except ValueError:
+        parser.error("Color values must be integers (e.g., 255,255,255)")
     
     add_text_overlay(args.input_file, args.output_file, args.text,
                      args.position, args.font_scale, color, args.thickness)
